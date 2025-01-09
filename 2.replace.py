@@ -3,7 +3,7 @@ import re
 import json
 
 # 文件路径
-xml_file_path = 'github-copilot-intellij/lib/core/META-INF/copilot-core.xml'
+xml_file_path = 'core/META-INF/copilot-core.xml'
 json_file_path = 'zh.json'
 
 # 正则表达式，用于匹配 <override-text place="MainMenu" text="xxx"/> 的行
