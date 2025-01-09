@@ -76,6 +76,6 @@ jobs:
         tag_name: ${{ github.event.inputs.release_tag }}
         name: ${{ github.event.inputs.release_title }}
         draft: false
-        make_latest: true
+        make_latest: false
         files: |
           github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
