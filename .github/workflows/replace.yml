@@ -48,8 +48,8 @@ jobs:
 
     - name: 将 core 目录重新打包到 core.jar
       run: |
-        cd core_jar_contents
-        zip -r ../core.jar * > ../core_zip.log 2>&1
+        cd core
+        zip -r ../core.jar *
         cd ..
         mv core.jar github-copilot-intellij/lib/
 
