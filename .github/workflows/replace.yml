@@ -53,8 +53,9 @@ jobs:
       run: |
         cd core
         zip -r ../core.jar *
-        cd ..
-        zip -r copilot.zip github-copilot-intellij/lib
+    - name: 替换 core.jar
+      run:
+        zip -r copilot.zip github-copilot-intellij
 
     - name: 重命名
       run: 
