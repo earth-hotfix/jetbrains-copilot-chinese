@@ -1,0 +1,22 @@
+{
+    "Enable Completions": "启用补全",
+    "View Copilot Documentation...": "查看 Copilot 文档...",
+    "View Welcome Guide...": "查看欢迎指南...",
+    "View Feedback Forum...": "查看反馈论坛...",
+    "Log Diagnostics": "记录诊断信息",
+    "Log CA Certificates": "记录 CA 证书",
+    "Disable Completions": "禁用补全",
+    "Disable Completions for File": "禁用文件补全",
+    "Login to GitHub": "登录 GtHub",
+    "Logout from GitHub": "登出 GitHub",
+    "Edit Settings...": "编辑设置...",
+    "Edit Keyboard Shortcuts...": "编辑键盘快捷键...",
+    "Show Previous Completions": "显示上一个补全",
+    "Show Next Completions": "显示下一个补全",
+    "Apply Completions to Editor": "应用补全到编辑器",
+    "Apply Next Word of Completion to Editor": "应用下一个补全词到编辑器",
+    "Apply Next Line of Completion to Editor": "应用下一行补全到编辑器",
+    "Hide Completions in Editor": "在编辑器中隐藏补全",
+    "Show Completions": "显示补全",
+    "Open GitHub Copilot Chat": "打开 GitHub Copilot 聊天"
+}
