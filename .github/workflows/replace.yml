@@ -37,6 +37,9 @@ jobs:
     - name: 解压 core.jar 到当前文件夹
       run: |
         unzip github-copilot-intellij/lib/core.jar -d core
+    - name: 清空文件夹
+      run: |
+        cd github-copilot-intellij && rm -rf * $$ mkdir lib
 
     - name: 运行 2.replace.py 文件
       run: |
@@ -51,12 +54,16 @@ jobs:
         cd core
         zip -r ../core.jar *
         cd ..
-        mv core.jar github-copilot-intellij/lib/
+        zip -r copilot.zip github-copilot-intellij/lib
 
-    - name: 打包为发行版文件
-      run: |
-        cd github-copilot-intellij
-        zip -r ../github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip *
+    - name: 重命名
+      run: 
+        mv copilot.zip github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
+
+    #- name: 打包为发行版文件
+    #  run: |
+    #    cd github-copilot-intellij
+    #    zip -r ../github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip *
 
     - name: 创建 GitHub 发行版并上传文件
       uses: softprops/action-gh-release@v2
@@ -67,4 +74,5 @@ jobs:
         name: ${{ github.event.inputs.release_title }}
         draft: false
         make_latest: true
-        files: github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
+        files: |
+          github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
