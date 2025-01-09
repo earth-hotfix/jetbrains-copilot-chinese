@@ -1,4 +1,4 @@
-name: 汉化
+name: 替换
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ on:
         required: true
 
 jobs:
-  hanhua:
+  replace:
     runs-on: ubuntu-latest
 
     steps:
