@@ -27,7 +27,7 @@ jobs:
         python-version: '3.x'
 
     - name: 下载文件并重命名为 copilot.zip
-      run: |
+      run:
         curl --progress-bar ${{ github.event.inputs.download_link }} -o copilot.zip
 
     - name: 解压 copilot.zip 到当前文件夹
