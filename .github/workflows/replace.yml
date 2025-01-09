@@ -56,7 +56,7 @@ jobs:
     - name: 打包为发行版文件
       run: |
         cd github-copilot-intellij
-        zip -r github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip *
+        zip -r ../github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip *
 
     - name: 创建 GitHub 发行版并上传文件
       uses: softprops/action-gh-release@v2
