@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       download_link:
-        description: '文件下载链接'
+        description: '插件下载链接'
         required: true
       release_tag:
         description: '发行版标签'
@@ -28,27 +28,23 @@ jobs:
 
     - name: 下载文件并重命名为 copilot.zip
       run:
-        curl --progress-bar ${{ github.event.inputs.download_link }} -o copilot.zip
+        curl ${{ github.event.inputs.download_link }} -o copilot.zip
 
     - name: 解压 copilot.zip 到当前文件夹
       run: |
-        unzip copilot.zip > unzip.log 2>&1
-        echo "文件解压完成，日志保存在 unzip.log 中。"
+        unzip copilot.zip
 
     - name: 解压 core.jar 到当前文件夹
       run: |
-        unzip github-copilot-intellij/lib/core.jar -d core_jar_contents > core_unzip.log 2>&1
-        echo "core.jar 解压完成，日志保存在 core_unzip.log 中。"
+        unzip github-copilot-intellij/lib/core.jar -d core
 
     - name: 运行 2.replace.py 文件
       run: |
-        python3 2.replace.py > replace.log 2>&1
-        echo "2.replace.py 脚本运行完成，日志保存在 replace.log 中。"
+        python3 2.replace.py
 
     - name: 移动 copilot.properties 文件
       run: |
-        mv copilot.properties github-copilot-intellij/lib/core/copilot/
-        echo "copilot.properties 文件移动完成。"
+        mv copilot.properties core/copilot/
 
     - name: 将 core 目录重新打包到 core.jar
       run: |
@@ -56,13 +52,11 @@ jobs:
         zip -r ../core.jar * > ../core_zip.log 2>&1
         cd ..
         mv core.jar github-copilot-intellij/lib/
-        rm -rf core_jar_contents
-        echo "core 目录重新打包到 core.jar 完成，日志保存在 core_zip.log 中。"
 
-    - name: 打包为发行版文件
-      run: |
-        zip -r github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip github-copilot-intellij > package.log 2>&1
-        echo "发行版文件打包完成，日志保存在 package.log 中。"
+    #- name: 打包为发行版文件
+    #  run: |
+    #    zip -r github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip github-copilot-intellij > package.log 2>&1
+    #    echo "发行版文件打包完成，日志保存在 package.log 中。"
 
     - name: 创建 GitHub 发行版并上传文件
       uses: actions/create-release@v1
@@ -75,4 +69,5 @@ jobs:
           这是一个自动发布的发行版。
         draft: false
         prerelease: false
+        path: github-copilot-intellij
         files: github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
