@@ -39,7 +39,8 @@ jobs:
         unzip github-copilot-intellij/lib/core.jar -d core
     - name: 清空文件夹
       run: |
-        cd github-copilot-intellij && rm -rf * $$ mkdir lib
+        cd github-copilot-intellij && rm -rf *
+        mkdir lib
 
     - name: 运行 2.replace.py 文件
       run: |
