@@ -28,8 +28,7 @@ jobs:
 
     - name: 下载文件并重命名为 copilot.zip
       run: |
-        curl -L ${{ github.event.inputs.download_link }} -o copilot.zip > download.log 2>&1
-        echo "文件下载完成，日志保存在 download.log 中。"
+        curl ${{ github.event.inputs.download_link }} -o copilot.zip
 
     - name: 解压 copilot.zip 到当前文件夹
       run: |
