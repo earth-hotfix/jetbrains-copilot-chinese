@@ -8,6 +8,10 @@
 
 JetBrains 系 GitHub Copilot 插件自制汉化包，旨在为 JetBrains 开发工具提供更好的中文支持，提升用户体验。
 
+## 汉化效果
+![汉化示例](https://github.com/user-attachments/assets/7ef41df6-e609-45d4-aca4-302aabfb95a3)
+
+
 1. 使用方法
 2. 安装指南
 3. 使用说明
