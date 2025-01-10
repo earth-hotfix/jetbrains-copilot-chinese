@@ -1,8 +1,9 @@
 <div style="display: flex; justify-content: center; align-items: center;">
-  <img src="https://github.com/devicons/devicon/blob/master/icons/jetbrains/jetbrains-original.svg" title="JetBrains" alt="JetBrains" width="55" height="55"/>
-  <img src="pluginIcon.svg" title="Copilot" alt="Copilot" width="55" height="55"/>
-  <img src="zh.svg" title="Rust"  alt="Chinese" width="55" height="55"/>
+  <a href="https://www.jetbrains.com/zh-cn"><img src="https://github.com/devicons/devicon/blob/master/icons/jetbrains/jetbrains-original.svg" title="JetBrains" alt="JetBrains" width="55" height="55"/></a>
+  <a href="https://plugins.jetbrains.com/plugin/17718-github-copilot"><img src="pluginIcon.svg" title="GitHub Copilot 插件" alt="Copilot" width="55" height="55"/></a>
+  <img src="zh.svg" title="简体中文"  alt="Chinese" width="55" height="55"/>
 </div>
+
 # JetBrains GitHub Copilot 插件汉化补丁
 
 JetBrains 系 GitHub Copilot 插件自制汉化包，旨在为 JetBrains 开发工具提供更好的中文支持，提升用户体验。
