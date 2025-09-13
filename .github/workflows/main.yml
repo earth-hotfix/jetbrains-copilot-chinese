@@ -1,0 +1,81 @@
+name: 替换
+
+on:
+  workflow_dispatch:
+    inputs:
+      download_link:
+        description: '插件下载链接'
+        required: true
+      release_tag:
+        description: '发行版标签'
+        required: true
+      release_title:
+        description: '发行版标题'
+        required: true
+
+jobs:
+  replace:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 初始化仓库
+      uses: actions/checkout@v2
+
+    - name: 设置 Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: 下载文件并重命名为 copilot.zip
+      run:
+        curl ${{ github.event.inputs.download_link }} -o copilot.zip
+
+    - name: 解压 copilot.zip 到当前文件夹
+      run: |
+        unzip copilot.zip
+
+    - name: 解压 core.jar 到当前文件夹
+      run: |
+        unzip github-copilot-intellij/lib/core.jar -d core
+    - name: 清空文件夹
+      run: |
+        cd github-copilot-intellij && rm -rf *
+        mkdir lib
+
+    - name: 运行 2.replace.py 文件
+      run: |
+        python3 2.replace.py
+
+    - name: 移动 copilot.properties 文件
+      run: |
+        mv copilot.properties core/copilot/
+
+    - name: 将 core 目录重新打包到 core.jar
+      run: |
+        cd core
+        zip -r ../core.jar *
+    - name: 替换 core.jar
+      run: |
+        mv core.jar github-copilot-intellij/lib/
+        zip -r copilot.zip github-copilot-intellij
+
+    - name: 重命名
+      run: 
+        mv copilot.zip github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
+
+    #- name: 打包为发行版文件
+    #  run: |
+    #    cd github-copilot-intellij
+    #    zip -r ../github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip *
+
+    - name: 创建 GitHub 发行版并上传文件
+      uses: softprops/action-gh-release@v2
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACTION_TOKEN }}
+      with:
+        tag_name: ${{ github.event.inputs.release_tag }}
+        name: ${{ github.event.inputs.release_title }}
+        draft: false
+        make_latest: false
+        files: |
+          github-copilot-intellij-${{ github.event.inputs.release_tag }}.zip
